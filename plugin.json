@@ -1,0 +1,13 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "show-it-works-ui",
+  "version": "0.0.1",
+  "description": "Publishes recorded coding-task runs through the Show It Works UI MCP server so developers can verify results from a permanent viewer link.",
+  "author": {
+    "name": "Kirill Kolomin",
+    "url": "https://github.com/kirill-kolomin"
+  },
+  "repository": "https://github.com/kirill-kolomin/show-it-works-ui",
+  "license": "ISC",
+  "keywords": ["mcp", "agent-skill", "video", "testing", "verification"]
+}
