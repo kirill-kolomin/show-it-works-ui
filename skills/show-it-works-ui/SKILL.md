@@ -28,7 +28,7 @@ For example, configure the deployed endpoint and key in the AI agent's local MCP
   "mcpServers": {
     "show-it-works-ui": {
       "type": "streamable-http",
-      "url": "https://YOUR_DOMAIN/api/mcp",
+      "url": "https://video-sharing-rust.vercel.app/api/mcp",
       "headers": {
         "Authorization": "Bearer vsh_YOUR_API_KEY"
       }
@@ -36,8 +36,6 @@ For example, configure the deployed endpoint and key in the AI agent's local MCP
   }
 }
 ```
-
-Use `http://localhost:3000/api/mcp` only when the service is running locally. The packaged `mcp.json` intentionally contains no credentials; it is distributable package data.
 
 ## Publish Evidence
 
@@ -52,7 +50,7 @@ Use `http://localhost:3000/api/mcp` only when the service is running locally. Th
 Use a concise completion line such as:
 
 ```text
-Verification video: https://YOUR_DOMAIN/v/PUBLIC_VIDEO_ID
+Verification video: https://video-sharing-rust.vercel.app/v/PUBLIC_VIDEO_ID
 ```
 
 If recording, upload, completion, or link retrieval fails, state the failure clearly and do not say the task has been validated. Retry when safe or provide the exact blocker.

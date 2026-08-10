@@ -18,7 +18,7 @@ This repository is a portable [Agent Plugin](https://agent-plugins.org/specifica
   "mcpServers": {
     "show-it-works-ui": {
       "type": "streamable-http",
-      "url": "https://YOUR_DOMAIN/api/mcp",
+      "url": "https://video-sharing-rust.vercel.app/api/mcp",
       "headers": {
         "Authorization": "Bearer vsh_YOUR_API_KEY"
       }
@@ -31,7 +31,7 @@ Do not put an API key in this repository or the distributed `mcp.json`. Plugin f
 
 ## Endpoint
 
-The packaged MCP configuration targets `http://localhost:3000/api/mcp` for local development. Before distributing the plugin for a deployed service, replace that value with its HTTPS endpoint, such as `https://YOUR_DOMAIN/api/mcp`.
+The packaged MCP configuration targets `https://video-sharing-rust.vercel.app/api/mcp`.
 
 ## Video Safety
 
