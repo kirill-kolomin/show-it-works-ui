@@ -48,7 +48,7 @@ For example, configure the deployed endpoint and key in the AI agent's local MCP
 4. Upload the recording bytes directly to the returned `upload.url`. Send every returned `upload.headers` value exactly, including `Content-Length`; do not use chunked transfer encoding.
 5. Call `complete_video_upload` with the returned `videoId`. Do not report success unless it completes successfully.
 6. Call `get_video_link` with that `videoId` after completion.
-7. After all task iterations and stale-video cleanup are complete, include only the final returned public URL in the completion message. Every video posting must return a link in chat so developers can immediately verify the final run result.
+7. Include only the latest returned public URL in the completion message. Every video posting must return a link in chat so developers can immediately verify the current run result.
 
 Use a concise completion line such as:
 
@@ -58,14 +58,13 @@ Verification video: https://video-sharing-rust.vercel.app/v/PUBLIC_VIDEO_ID
 
 If recording, upload, completion, or link retrieval fails, state the failure clearly and do not say the task has been validated. Retry when safe or provide the exact blocker.
 
-## Iterative Evidence Cleanup
+## Evidence Retention And Session Closeout
 
 A video is evidence only for the exact code state and verification run it records.
 
-1. Prefer keeping recordings from intermediate verification runs local. Create and complete an upload only after the implementation and final verification are complete.
-2. Keep the `videoId` for every upload created during the task until the task is complete, including uploads that are incomplete, failed verification, or superseded.
-3. If a later code change, test change, or verification run is required after a video has completed, that completed video is stale. Call `delete_video` with its `videoId` before publishing replacement evidence.
-4. If multiple stale videos exist, delete all of them. Do not return stale, failed, or superseded video links to the developer.
-5. The final response must include exactly one verification-video link: the last successfully completed recording of the final code state.
-6. If the task fails, is abandoned, or final publication cannot be completed, delete completed intermediate videos created for the task when safe. State that final video evidence is unavailable.
-7. If deletion fails, do not describe the stale video as final evidence. State the cleanup failure and include only the final video link, if one exists.
+1. Retain every completed recording created for the current work session. Do not delete a recording merely because a later code change, test change, or verification run supersedes it.
+2. Keep the `videoId` for every recording created during the work session. Treat prior recordings as superseded after later successful verification, but retain them for rollback investigation.
+3. In normal completion messages, return exactly one verification-video link: the latest successfully completed recording for the current code state. Do not include superseded links unless the developer asks for them.
+4. When a developer explicitly asks to close the work session, clean up recordings, or clearly indicates that work is finished, ask whether to retain or delete the recordings created during the current work session. Do not delete recordings without confirmation.
+5. On confirmed cleanup, call `delete_video` only for the `videoId` values created during the current work session. Do not delete recordings from unrelated work.
+6. If deletion fails, state the cleanup failure clearly and retain the affected `videoId` values for a later retry.
