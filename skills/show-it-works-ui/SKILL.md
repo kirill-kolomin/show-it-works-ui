@@ -1,17 +1,20 @@
 ---
 name: show-it-works-ui
-description: Record, upload, and report a video of every completed daily coding task through the Show It Works UI MCP server so the developer can immediately verify the result. Use by default at the end of task execution; skip all video work only when the user explicitly rejects video evidence.
+description: Record, upload, and report final verification evidence through the Show It Works UI MCP server when the user explicitly requests video evidence or repository agent instructions require it.
 ---
 
 # Show It Works UI
 
-## Required Daily Workflow
+## When To Use
 
-Use this skill for daily coding work. When a task is complete, record the final test run, publish it through the Show It Works UI MCP server, and return its public viewer link in the chat.
+Use this skill only when either condition applies:
 
-The only exception is an explicit user opt-out, such as "do not record a video", "skip video evidence", or equivalent. In that case, do not record, upload, or post a video. Do not infer an opt-out from task scope, time pressure, or the absence of a UI request.
+1. The user explicitly asks for a recording, video evidence, or an equivalent deliverable.
+2. Repository-level agent instructions, such as `AGENTS.md` or `CLAUDE.md`, explicitly require video evidence for this task.
 
-Never claim that a task is ready for validation until the video has been published and its viewer link has been sent in the chat.
+Do not record, upload, or post a video solely because a coding task was completed. An explicit request or applicable repository instruction is required.
+
+When this skill applies, record the final test run, publish it through the Show It Works UI MCP server, and return its public viewer link in the chat. Do not claim that the task is ready for video validation until the video has been published and its viewer link has been sent.
 
 ## One-Time Setup
 
@@ -45,7 +48,7 @@ For example, configure the deployed endpoint and key in the AI agent's local MCP
 4. Upload the recording bytes directly to the returned `upload.url`. Send every returned `upload.headers` value exactly, including `Content-Length`; do not use chunked transfer encoding.
 5. Call `complete_video_upload` with the returned `videoId`. Do not report success unless it completes successfully.
 6. Call `get_video_link` with that `videoId` after completion.
-7. In the same completion message sent to the user, include the returned public URL as the video evidence link. Every video posting must return a link in chat so developers can immediately verify the run result.
+7. After all task iterations and stale-video cleanup are complete, include only the final returned public URL in the completion message. Every video posting must return a link in chat so developers can immediately verify the final run result.
 
 Use a concise completion line such as:
 
@@ -54,3 +57,15 @@ Verification video: https://video-sharing-rust.vercel.app/v/PUBLIC_VIDEO_ID
 ```
 
 If recording, upload, completion, or link retrieval fails, state the failure clearly and do not say the task has been validated. Retry when safe or provide the exact blocker.
+
+## Iterative Evidence Cleanup
+
+A video is evidence only for the exact code state and verification run it records.
+
+1. Prefer keeping recordings from intermediate verification runs local. Create and complete an upload only after the implementation and final verification are complete.
+2. Keep the `videoId` for every upload created during the task until the task is complete, including uploads that are incomplete, failed verification, or superseded.
+3. If a later code change, test change, or verification run is required after a video has completed, that completed video is stale. Call `delete_video` with its `videoId` before publishing replacement evidence.
+4. If multiple stale videos exist, delete all of them. Do not return stale, failed, or superseded video links to the developer.
+5. The final response must include exactly one verification-video link: the last successfully completed recording of the final code state.
+6. If the task fails, is abandoned, or final publication cannot be completed, delete completed intermediate videos created for the task when safe. State that final video evidence is unavailable.
+7. If deletion fails, do not describe the stale video as final evidence. State the cleanup failure and include only the final video link, if one exists.
