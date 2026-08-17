@@ -40,6 +40,15 @@ For example, configure the deployed endpoint and key in the AI agent's local MCP
 }
 ```
 
+## Recording Tools
+
+Use any safe recording method available in the current environment that can produce an MP4 or WebM showing the relevant verification. Do not require a specific browser automation or screen-recording tool.
+
+1. Prefer the project's existing browser-test recorder, agent browser tool, operating-system recorder, or another available recording capability.
+2. If no recording setup is available, follow the [Playwright recording fallback](references/playwright-recording.md). Load that reference only when needed.
+3. Capture only the relevant application browser context or window. Do not record credentials, terminals, local files, unrelated browser tabs, or other private data.
+4. If no safe recording method is available, state that video evidence could not be produced and provide the exact blocker. Do not claim visual verification.
+
 ## Publish Evidence
 
 1. Run the strongest available final verification for the task. Prefer the project's existing browser or end-to-end test and record the actual final behavior. If no recording test exists, run the application and record a focused manual verification.
