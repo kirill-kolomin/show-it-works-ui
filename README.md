@@ -37,4 +37,4 @@ The packaged MCP configuration targets `https://video-sharing-rust.vercel.app/ap
 
 Published viewer links are permanent and unrestricted. Record only information that is safe to share with anyone who receives the link; never capture credentials, API keys, or other secrets.
 
-Upload metadata has an explicit visibility boundary. `workspaceName` and `taskName` are public, `ownerContext` is shown only to the authenticated owner, and `publicContext` is shown publicly only when the uploading agent explicitly supplies it as safe. Agents should omit uncertain or sensitive metadata rather than infer a public value.
+Upload metadata has an explicit visibility boundary. `worktreeName` and `taskName` are public, `ownerContext` is shown only to the authenticated owner, and `publicContext` is shown publicly only when the uploading agent explicitly supplies it as safe. Agents should omit uncertain or sensitive metadata rather than infer a public value.
