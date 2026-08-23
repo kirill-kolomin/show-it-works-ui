@@ -76,6 +76,8 @@ If recording, upload, completion, or link retrieval fails, state the failure cle
 
 A video is evidence only for the exact code state and verification run it records.
 
+The service deletes every recording 60 days after upload, so the guidance below applies within that window. Never describe a viewer link as permanent. `list_videos` and `get_video_link` return each recording's `retainUntil` deadline; report it when a developer asks how long a link will keep working, and re-record rather than relying on a recording whose deadline has passed.
+
 1. Retain every completed recording created for the current work session. Do not delete a recording merely because a later code change, test change, or verification run supersedes it.
 2. Keep the `videoId` for every recording created during the work session. Treat prior recordings as superseded after later successful verification, but retain them for rollback investigation.
 3. In normal completion messages, return exactly one verification-video link: the latest successfully completed recording for the current code state. Do not include superseded links unless the developer asks for them.
