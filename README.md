@@ -35,6 +35,6 @@ The packaged MCP configuration targets `https://video-sharing-rust.vercel.app/ap
 
 ## Video Safety
 
-Published viewer links are unrestricted and stay stable for the recording's lifetime. Recordings are deleted automatically 60 days after upload, after which the link stops working. Record only information that is safe to share with anyone who receives the link; never capture credentials, API keys, or other secrets.
+Published viewer links are unrestricted and stay stable for the recording's lifetime. Recordings are deleted automatically when their retention window ends — 14 to 60 days after upload, depending on the uploading account's plan — after which the link stops working. `list_videos` and `get_video_link` return each recording's exact `retainUntil` deadline. Record only information that is safe to share with anyone who receives the link; never capture credentials, API keys, or other secrets.
 
 Upload metadata has an explicit visibility boundary. `worktreeName` and `taskName` are public, `ownerContext` is shown only to the authenticated owner, and `publicContext` is shown publicly only when the uploading agent explicitly supplies it as safe. Agents should omit uncertain or sensitive metadata rather than infer a public value.
