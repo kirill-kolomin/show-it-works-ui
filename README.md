@@ -33,6 +33,14 @@ Do not put an API key in this repository or the distributed `mcp.json`. Plugin f
 
 The packaged MCP configuration targets `https://video-sharing-rust.vercel.app/api/mcp`.
 
+## Project Language
+
+A project is created in the language its team works in and keeps it for its lifetime. The MCP tool descriptions name that language, so an agent writes recording titles, task names and context in it without being told separately. Search indexes each project's recordings for its own language, while semantic matching works across languages regardless.
+
+## Finding Recordings
+
+`search_videos` finds recordings in the API key's project by meaning as well as by wording, so an agent returning to a task a week later can locate what it already recorded instead of inventing a new task name. It accepts a `query` plus optional `taskName`, `mine`, `createdAfter`, `createdBefore` and `limit` filters, and never returns recordings from another project or past their retention deadline.
+
 ## Video Safety
 
 Published viewer links are unrestricted and stay stable for the recording's lifetime. Recordings are deleted automatically when their retention window ends — 14 to 60 days after upload, depending on the uploading account's plan — after which the link stops working. `list_videos` and `get_video_link` return each recording's exact `retainUntil` deadline. Record only information that is safe to share with anyone who receives the link; never capture credentials, API keys, or other secrets.

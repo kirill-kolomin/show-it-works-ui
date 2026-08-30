@@ -49,6 +49,34 @@ Use any safe recording method available in the current environment that can prod
 3. Capture only the relevant application browser context or window. Do not record credentials, terminals, local files, unrelated browser tabs, or other private data.
 4. If no safe recording method is available, state that video evidence could not be produced and provide the exact blocker. Do not claim visual verification.
 
+## Find Prior Recordings
+
+A fresh session has no memory of what was already recorded, which is how a
+project ends up with a dozen near-duplicate task names for one piece of work.
+Before choosing a `taskName`, call `search_videos` with a phrase describing the
+work — it finds recordings by meaning as well as by wording, so "the run where
+uploads kept failing" reaches a recording that never uses those words. Reuse the
+`taskName` of a recording that is plainly about the same task instead of
+inventing a new one.
+
+`search_videos` takes a `query` and, optionally, `taskName` (substring),
+`mine` (only recordings this key's owner uploaded), `createdAfter` /
+`createdBefore` (ISO timestamps) and `limit`. Results are ranked, are limited to
+the project the API key belongs to, and never include expired recordings. A
+`similarity` of `null` means the recording matched on wording rather than
+meaning. An empty result is a real answer: nothing in the project is about that.
+
+## Write In The Project's Language
+
+Each project is created in the language its team works in, and that language is
+fixed for the project's lifetime. The `create_video_upload` tool description
+names it. Write `title`, `worktreeName`, `taskName`, `ownerContext` and
+`publicContext` in that language — the developers who read them do not
+necessarily read English, and a recording filed in the wrong language is
+evidence nobody on that team can use. Do not translate the code, identifiers,
+commands or file paths quoted inside the context; those stay as they are in the
+repository.
+
 ## Publish Evidence
 
 1. Run the strongest available final verification for the task. Prefer the project's existing browser or end-to-end test and record the actual final behavior. If no recording test exists, run the application and record a focused manual verification.
