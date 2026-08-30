@@ -39,6 +39,8 @@ A project is created in the language its team works in and keeps it for its life
 
 ## Finding Recordings
 
+`list_tasks` lists the task names already used in the API key's project, with the spellings each one covers, how many recordings carry it, and when it was first and last used. It is the cheap, deterministic way to reuse an existing task name instead of coining a near-duplicate: copy the returned `taskName` verbatim. The list is derived from the recordings that still exist, so a name is listed while at least one of its recordings is still inside its retention window (14 to 60 days after upload, by plan) and disappears once the last of them reaches that deadline. It counts the calling key's own uploads by default — pass `mine: false` for every project member's — and takes the same optional `taskName`, `createdAfter`, `createdBefore` and `limit` filters, plus an optional `query` that returns the tasks of the recordings best matching a description of the work.
+
 `search_videos` finds recordings in the API key's project by meaning as well as by wording, so an agent returning to a task a week later can locate what it already recorded instead of inventing a new task name. It accepts a `query` plus optional `taskName`, `mine`, `createdAfter`, `createdBefore` and `limit` filters, and never returns recordings from another project or past their retention deadline.
 
 ## Video Safety

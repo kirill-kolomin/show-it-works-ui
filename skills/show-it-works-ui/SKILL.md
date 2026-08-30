@@ -53,11 +53,29 @@ Use any safe recording method available in the current environment that can prod
 
 A fresh session has no memory of what was already recorded, which is how a
 project ends up with a dozen near-duplicate task names for one piece of work.
-Before choosing a `taskName`, call `search_videos` with a phrase describing the
-work — it finds recordings by meaning as well as by wording, so "the run where
-uploads kept failing" reaches a recording that never uses those words. Reuse the
-`taskName` of a recording that is plainly about the same task instead of
-inventing a new one.
+
+**First, call `list_tasks`.** It is cheap and deterministic, and it returns the
+project's task names as strings you can copy. Pick the entry that is the same
+work and copy its `taskName` character for character — one extra capital letter
+or a different spacing creates a second task in every future listing, which is
+the problem this call exists to prevent. Each entry also carries `variants`
+(the spellings already in use for that task), `recordingCount`, `firstUsedAt`
+and `lastUsedAt`, beside an `untagged` count of the recordings filed under no
+task. The list is derived from the recordings that still exist: a name is
+listed while at least one of its recordings is still inside its retention
+window, and drops out once the last of them reaches that deadline. It counts your
+own uploads by default — pass `mine: false` to see every project member's —
+and takes optional `taskName` (substring), `createdAfter` / `createdBefore` and
+`limit` filters, while `truncated` tells you whether more names exist than came
+back. Passing a `query` narrows the answer to the tasks of the recordings that
+best match a description of the work, which is a shortlist rather than the
+project's whole vocabulary; omit it when you want the full list.
+
+**Then use `search_videos` to reach the recordings themselves.** Call it with a
+phrase describing the work — it finds recordings by meaning as well as by
+wording, so "the run where uploads kept failing" reaches a recording that never
+uses those words. Reuse the `taskName` of a recording that is plainly about the
+same task instead of inventing a new one.
 
 `search_videos` takes a `query` and, optionally, `taskName` (substring),
 `mine` (only recordings this key's owner uploaded), `createdAfter` /
@@ -65,6 +83,27 @@ inventing a new one.
 the project the API key belongs to, and never include expired recordings. A
 `similarity` of `null` means the recording matched on wording rather than
 meaning. An empty result is a real answer: nothing in the project is about that.
+
+## Name The Worktree Consistently
+
+`worktreeName` groups recordings on the dashboard, so the same checkout must
+produce the same value in every session. Keep the vocabulary straight: a
+*worktree* (or workspace) is the local checkout you are working in, while a
+*project* is the container the API key points at — one project normally collects
+recordings from several worktrees.
+
+Derive the name, never invent it:
+
+1. Use the basename of `git rev-parse --show-toplevel`. For a `git worktree`
+   that is the worktree's own directory, not the main checkout's.
+2. If the work is not in a git repository, use the name of the directory the
+   project is checked out into.
+
+Do not use the branch name, a description of the task, or a name made up for
+this session. A name that changes between sessions splits one body of work into
+several groups on the dashboard, which is exactly what the field is there to
+prevent. `worktreeName` is public: omit it if the real name is not safe to
+publish.
 
 ## Write In The Project's Language
 
