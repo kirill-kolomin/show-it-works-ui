@@ -63,7 +63,8 @@ the problem this call exists to prevent. Each entry also carries `variants`
 and `lastUsedAt`, beside an `untagged` count of the recordings filed under no
 task. The list is derived from the recordings that still exist: a name is
 listed while at least one of its recordings is still inside its retention
-window, and drops out once the last of them reaches that deadline. It counts your
+window — set by the project's plan — and drops out once the last of them
+reaches that deadline. It counts your
 own uploads by default — pass `mine: false` to see every project member's —
 and takes optional `taskName` (substring), `createdAfter` / `createdBefore` and
 `limit` filters, while `truncated` tells you whether more names exist than came
@@ -143,7 +144,7 @@ If recording, upload, completion, or link retrieval fails, state the failure cle
 
 A video is evidence only for the exact code state and verification run it records.
 
-The service deletes every recording when its retention window ends. The window depends on the uploading account's plan (14 to 60 days) and is fixed at upload time, so the guidance below applies within that window. Never describe a viewer link as permanent and never assume a specific number of days. `list_videos` and `get_video_link` return each recording's `retainUntil` deadline; report it when a developer asks how long a link will keep working, and re-record rather than relying on a recording whose deadline has passed.
+The service deletes every recording when its retention window ends. The window depends on the project's plan (14 to 60 days) and is fixed at upload time, so the guidance below applies within that window. Never describe a viewer link as permanent and never assume a specific number of days. `list_videos` and `get_video_link` return each recording's `retainUntil` deadline; report it when a developer asks how long a link will keep working, and re-record rather than relying on a recording whose deadline has passed.
 
 1. Retain every completed recording created for the current work session. Do not delete a recording merely because a later code change, test change, or verification run supersedes it.
 2. Keep the `videoId` for every recording created during the work session. Treat prior recordings as superseded after later successful verification, but retain them for rollback investigation.
