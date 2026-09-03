@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "show-it-works-ui",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "Publishes recorded coding-task runs through the Show It Works UI MCP server so developers can verify results from a viewer link that stays stable for the recording's lifetime.",
   "author": {
     "name": "Kirill Kolomin",
