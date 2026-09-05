@@ -42,12 +42,13 @@ For example, configure the deployed endpoint and key in the AI agent's local MCP
 
 ## Recording Tools
 
-Use any safe recording method available in the current environment that can produce an MP4 or WebM showing the relevant verification. Do not require a specific browser automation or screen-recording tool.
+Use any safe recording method available in the current environment that can produce an MP4 or WebM showing the relevant verification. This service stores and publishes what it is given; it does not prescribe how the recording is made.
 
-1. Prefer the project's existing browser-test recorder, agent browser tool, operating-system recorder, or another available recording capability.
-2. If no recording setup is available, follow the [Playwright recording fallback](references/playwright-recording.md). Load that reference only when needed.
-3. Capture only the relevant application browser context or window. Do not record credentials, terminals, local files, unrelated browser tabs, or other private data.
-4. If no safe recording method is available, state that video evidence could not be produced and provide the exact blocker. Do not claim visual verification.
+1. Prefer the project's existing browser-test recorder, agent browser tool, operating-system recorder, or another available recording capability. Playwright's `recordVideo` has to be set when a browser context is created and cannot be enabled on a context that already exists, so an agent browser session that is already open usually cannot be recorded retroactively.
+2. If nothing is available, `ui-evidence-recorder` (`npx skillpm install ui-evidence-recorder`) is one option. It drives Playwright and produces a take a viewer can follow — a drawn cursor, a highlight ring around each click, and captions naming each step — rather than a screencast in which things change with no visible cause. It expects Playwright to be installed in the project being recorded. This is a suggestion, not a requirement: any recorder that produces a watchable MP4 or WebM is equally acceptable.
+3. Installing a recorder changes the user's project. Ask before adding a dependency to it, and keep generated scripts, exported browser state and recordings out of version control.
+4. Capture only the relevant application window or browser context. Do not record credentials, terminals, local files, unrelated browser tabs, or other private data: anyone with the viewer link sees whatever was in frame. When a sign-in is required, ask the user to authenticate and start recording only once the authenticated page is visible. Never request credentials in chat or write them into a generated script.
+5. If no safe recording method is available, state that video evidence could not be produced and provide the exact blocker. Do not claim visual verification.
 
 ## Find Prior Recordings
 
@@ -118,7 +119,7 @@ sure the text is right — the check is a heuristic and refuses nothing.
 ## Publish Evidence
 
 1. Run the strongest available final verification for the task. Prefer the project's existing browser or end-to-end test and record the actual final behavior. If no recording test exists, run the application and record a focused manual verification.
-2. Produce an MP4 or WebM recording. Prefer MP4/H.264 for broad browser compatibility. Do not capture API keys, credentials, private source data, or other secrets: anyone with the viewer link can watch it.
+2. Produce an MP4 or WebM recording and register it as the type it actually is: nothing sniffs the bytes, and the service never converts between the two. Do not capture API keys, credentials, private source data, or other secrets: anyone with the viewer link can watch it.
 3. Call `create_video_upload` with a specific title, the recording filename, its MIME type, its exact byte size, and useful metadata when available:
    - `worktreeName`: a concise git worktree or repository name that is safe to show publicly.
    - `taskName`: a concise task or verification name that is safe to show publicly.
