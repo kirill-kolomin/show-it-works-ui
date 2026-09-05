@@ -33,7 +33,7 @@ For example, configure the deployed endpoint and key in the AI agent's local MCP
       "type": "streamable-http",
       "url": "https://video-sharing-rust.vercel.app/api/mcp",
       "headers": {
-        "Authorization": "Bearer vsh_YOUR_API_KEY"
+        "Authorization": "Bearer siw_YOUR_API_KEY"
       }
     }
   }

@@ -20,7 +20,7 @@ This repository is a portable [Agent Plugin](https://agent-plugins.org/specifica
       "type": "streamable-http",
       "url": "https://video-sharing-rust.vercel.app/api/mcp",
       "headers": {
-        "Authorization": "Bearer vsh_YOUR_API_KEY"
+        "Authorization": "Bearer siw_YOUR_API_KEY"
       }
     }
   }
