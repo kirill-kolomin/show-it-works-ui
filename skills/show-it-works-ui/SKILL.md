@@ -31,7 +31,7 @@ For example, configure the deployed endpoint and key in the AI agent's local MCP
   "mcpServers": {
     "show-it-works-ui": {
       "type": "streamable-http",
-      "url": "https://video-sharing-rust.vercel.app/api/mcp",
+      "url": "https://showitworks.app/api/mcp",
       "headers": {
         "Authorization": "Bearer siw_YOUR_API_KEY"
       }
@@ -134,7 +134,7 @@ sure the text is right — the check is a heuristic and refuses nothing.
 Use a concise completion line such as:
 
 ```text
-Verification video: https://video-sharing-rust.vercel.app/v/PUBLIC_VIDEO_ID
+Verification video: https://showitworks.app/v/PUBLIC_VIDEO_ID
 ```
 
 If recording, upload, completion, or link retrieval fails, state the failure clearly and do not say the task has been validated. Retry when safe or provide the exact blocker.

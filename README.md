@@ -18,7 +18,7 @@ This repository is a portable [Agent Plugin](https://agent-plugins.org/specifica
   "mcpServers": {
     "show-it-works-ui": {
       "type": "streamable-http",
-      "url": "https://video-sharing-rust.vercel.app/api/mcp",
+      "url": "https://showitworks.app/api/mcp",
       "headers": {
         "Authorization": "Bearer siw_YOUR_API_KEY"
       }
@@ -31,7 +31,7 @@ Do not put an API key in this repository or the distributed `mcp.json`. Plugin f
 
 ## Endpoint
 
-The packaged MCP configuration targets `https://video-sharing-rust.vercel.app/api/mcp`.
+The packaged MCP configuration targets `https://showitworks.app/api/mcp`.
 
 ## Project Language
 

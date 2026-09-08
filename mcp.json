@@ -3,7 +3,7 @@
   "mcpServers": {
     "show-it-works-ui": {
       "type": "streamable-http",
-      "url": "https://video-sharing-rust.vercel.app/api/mcp"
+      "url": "https://showitworks.app/api/mcp"
     }
   }
 }
