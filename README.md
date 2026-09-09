@@ -9,7 +9,7 @@ This repository is a portable [Agent Plugin](https://agent-plugins.org/specifica
 
 ## Configure Authentication
 
-1. Sign in to the Show It Works website with GitHub.
+1. Sign in to the [Show It Works website](https://showitworks.app) with GitHub.
 2. Visit `/settings`, create an MCP API key, and copy it when shown. It cannot be displayed again. The same page renders a ready-to-paste `.mcp.json` carrying the new key.
 3. Add the key to the AI agent's local MCP configuration as an `Authorization` bearer header:
 

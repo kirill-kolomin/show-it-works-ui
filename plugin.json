@@ -7,6 +7,7 @@
     "name": "Kirill Kolomin",
     "url": "https://github.com/kirill-kolomin"
   },
+  "homepage": "https://showitworks.app",
   "repository": "https://github.com/kirill-kolomin/show-it-works-ui",
   "license": "ISC",
   "keywords": ["mcp", "agent-skill", "video", "testing", "verification"]
