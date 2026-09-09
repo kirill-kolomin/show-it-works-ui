@@ -9,6 +9,6 @@
   },
   "homepage": "https://showitworks.app",
   "repository": "https://github.com/kirill-kolomin/show-it-works-ui",
-  "license": "ISC",
+  "license": "MIT",
   "keywords": ["mcp", "agent-skill", "video", "testing", "verification"]
 }
