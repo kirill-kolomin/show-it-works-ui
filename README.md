@@ -2,6 +2,8 @@
 
 Show It Works UI gives AI coding agents a repeatable way to publish recorded final test runs and give developers a viewer link for immediate verification that stays stable for the recording's lifetime.
 
+You tell your agent: "I can't click through your work — run the stack, prove it works, record a video." When the task ends, the recording lands in your project and a link comes back in chat. Review it at your own pace from your desk or your phone — on the long road to a vacation spot, in a waiting room — then approve it, send the task back to rework, or forward the link to a colleague for a quick nod. It does not replace your final manual check; it saves every check in between. [Watch a sample recording](https://showitworks.app/#demo).
+
 This repository is a portable [Agent Plugin](https://agent-plugins.org/specification) containing:
 
 - `mcp.json`: a Streamable HTTP MCP connection for creating, completing, listing, finding, linking, and deleting recordings.
