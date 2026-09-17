@@ -1,0 +1,19 @@
+{
+  "name": "show-it-works",
+  "owner": {
+    "name": "Kirill Kolomin",
+    "url": "https://github.com/kirill-kolomin"
+  },
+  "description": "The Show It Works UI plugin, published from the repository it lives in.",
+  "plugins": [
+    {
+      "name": "show-it-works-ui",
+      "source": "./",
+      "description": "Publishes recorded coding-task runs through the Show It Works UI MCP server so developers can verify results from a viewer link that stays stable for the recording's lifetime.",
+      "version": "0.0.1",
+      "license": "MIT",
+      "homepage": "https://showitworks.app",
+      "keywords": ["mcp", "agent-skill", "video", "testing", "verification"]
+    }
+  ]
+}

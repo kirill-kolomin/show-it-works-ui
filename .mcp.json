@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "show-it-works-ui": {
+      "type": "http",
+      "url": "https://showitworks.app/api/mcp",
+      "headers": {
+        "Authorization": "Bearer ${user_config.api_key}"
+      }
+    }
+  }
+}

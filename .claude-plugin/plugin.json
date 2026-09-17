@@ -1,0 +1,24 @@
+{
+  "name": "show-it-works-ui",
+  "displayName": "Show It Works UI",
+  "version": "0.0.1",
+  "description": "Publishes recorded coding-task runs through the Show It Works UI MCP server so developers can verify results from a viewer link that stays stable for the recording's lifetime.",
+  "author": {
+    "name": "Kirill Kolomin",
+    "url": "https://github.com/kirill-kolomin"
+  },
+  "homepage": "https://showitworks.app",
+  "repository": "https://github.com/kirill-kolomin/show-it-works-ui",
+  "license": "MIT",
+  "keywords": ["mcp", "agent-skill", "video", "testing", "verification"],
+  "mcpServers": "./.mcp.json",
+  "userConfig": {
+    "api_key": {
+      "type": "string",
+      "title": "Show It Works API key",
+      "description": "Create a key at https://showitworks.app/settings and paste it here. It is displayed only once, and it decides which project the recordings land in.",
+      "sensitive": true,
+      "required": true
+    }
+  }
+}

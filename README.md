@@ -7,11 +7,32 @@ This repository is a portable [Agent Plugin](https://agent-plugins.org/specifica
 - `mcp.json`: a Streamable HTTP MCP connection for creating, completing, listing, finding, linking, and deleting recordings.
 - `skills/show-it-works-ui/SKILL.md`: the daily-work workflow that requires agents to publish a final verification video and return its link in chat, unless the user explicitly opts out.
 
+It is also a Claude Code plugin and its own single-plugin marketplace, so Claude Code installs the skill and the MCP connection together and asks for the API key itself.
+
+## Install in Claude Code
+
+```
+/plugin marketplace add kirill-kolomin/show-it-works-ui
+/plugin install show-it-works-ui@show-it-works
+```
+
+Claude Code asks for a Show It Works API key while enabling the plugin and stores it outside this repository, so nothing below has to be configured by hand. Create the key first, as described under [Configure Authentication](#configure-authentication).
+
+## Install in Other Agents
+
+Install the skill from this repository with the [skills.sh](https://skills.sh) CLI:
+
+```bash
+npx skills add kirill-kolomin/show-it-works-ui
+```
+
+The command installs the skill only, so the MCP connection described below still has to be configured by hand.
+
 ## Configure Authentication
 
 1. Sign in to the [Show It Works website](https://showitworks.app) with GitHub.
 2. Visit `/settings`, create an MCP API key, and copy it when shown. It cannot be displayed again. The same page renders a ready-to-paste `.mcp.json` carrying the new key.
-3. Add the key to the AI agent's local MCP configuration as an `Authorization` bearer header:
+3. Add the key to the AI agent's local MCP configuration as an `Authorization` bearer header. In Claude Code this step is the field the plugin asks for at install time, and no file has to be edited:
 
 ```json
 {
@@ -27,7 +48,7 @@ This repository is a portable [Agent Plugin](https://agent-plugins.org/specifica
 }
 ```
 
-Do not put an API key in this repository or the distributed `mcp.json`. Plugin files are shareable package data, so secrets must remain in the user's local MCP configuration.
+Do not put an API key in this repository or the distributed `mcp.json`. Plugin files are shareable package data, so secrets must remain in the user's local MCP configuration. The Claude Code manifest holds a `${user_config.api_key}` placeholder for the same reason: the key the user types is stored on their own machine and substituted into the header at run time.
 
 ## Endpoint
 
@@ -46,3 +67,15 @@ A project is created in the language its team works in and keeps it for its life
 Published viewer links are unrestricted and stay stable for the recording's lifetime. Recordings are deleted automatically when their retention window ends, which the project's plan sets at upload time, and the link stops working then. `list_videos` and `get_video_link` return each recording's exact `retainUntil` deadline, which is the only number worth quoting to anyone. Record only information that is safe to share with anyone who receives the link; never capture credentials, API keys, or other secrets.
 
 Upload metadata has an explicit visibility boundary. `worktreeName` and `taskName` are public, `ownerContext` is shown only to the authenticated owner, and `publicContext` is shown publicly only when the uploading agent explicitly supplies it as safe. Agents should omit uncertain or sensitive metadata rather than infer a public value.
+
+## Releasing
+
+The plugin is described in three places that have to agree: `plugin.json` (the portable Agent Plugins manifest), `.claude-plugin/plugin.json` (the Claude Code manifest) and the plugin entry in `.claude-plugin/marketplace.json`. Change a version or a description in all of them, then run:
+
+```bash
+node scripts/check-manifests.mjs
+claude plugin validate .
+claude plugin validate .claude-plugin/plugin.json --strict
+```
+
+The first command is also run by CI, so a release that updates only one manifest fails before anyone installs it.
