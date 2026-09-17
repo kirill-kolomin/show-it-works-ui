@@ -2,7 +2,7 @@
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "show-it-works-ui",
   "version": "0.0.1",
-  "description": "Publishes recorded coding-task runs through the Show It Works UI MCP server so developers can verify results from a viewer link that stays stable for the recording's lifetime.",
+  "description": "Every finished coding task ends with a screen recording of the real run and a share link. AI agents publish proof-of-work videos over MCP; you verify results at your own pace — later, from your phone, anywhere — while your other agent sessions keep moving.",
   "author": {
     "name": "Kirill Kolomin",
     "url": "https://github.com/kirill-kolomin"
@@ -10,5 +10,20 @@
   "homepage": "https://showitworks.app",
   "repository": "https://github.com/kirill-kolomin/show-it-works-ui",
   "license": "MIT",
-  "keywords": ["mcp", "agent-skill", "video", "testing", "verification"]
+  "keywords": [
+    "mcp",
+    "ai-agent",
+    "claude-code",
+    "video",
+    "screen-recording",
+    "verification",
+    "testing",
+    "e2e",
+    "playwright",
+    "qa",
+    "proof-of-work",
+    "demo",
+    "evidence",
+    "agent-skill"
+  ]
 }
