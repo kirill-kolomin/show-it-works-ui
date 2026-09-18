@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "show-it-works-ui",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Every finished coding task ends with a screen recording of the real run and a share link. AI agents publish proof-of-work videos over MCP; you verify results at your own pace — later, from your phone, anywhere — while your other agent sessions keep moving.",
   "author": {
     "name": "Kirill Kolomin",

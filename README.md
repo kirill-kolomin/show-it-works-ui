@@ -9,7 +9,7 @@ This repository is a portable [Agent Plugin](https://agent-plugins.org/specifica
 - `mcp.json`: a Streamable HTTP MCP connection for creating, completing, listing, finding, linking, and deleting recordings.
 - `skills/show-it-works-ui/SKILL.md`: the daily-work workflow that requires agents to publish a final verification video and return its link in chat, unless the user explicitly opts out.
 
-It is also a Claude Code plugin and its own single-plugin marketplace, so Claude Code installs the skill and the MCP connection together and asks for the API key itself.
+It is also a Claude Code plugin, and it hosts the `show-it-works` marketplace, so Claude Code installs the skill and the MCP connection together and asks for the API key itself.
 
 ## Install in Claude Code
 
@@ -19,6 +19,14 @@ It is also a Claude Code plugin and its own single-plugin marketplace, so Claude
 ```
 
 Claude Code asks for a Show It Works API key while enabling the plugin and stores it outside this repository, so nothing below has to be configured by hand. Create the key first, as described under [Configure Authentication](#configure-authentication).
+
+The same marketplace also lists [`ui-evidence-recorder`](https://github.com/kirill-kolomin/ui-evidence-recorder), which produces the videos this plugin publishes — a Playwright studio with a drawn cursor, highlight rings and captions, instead of a raw screencast:
+
+```
+/plugin install ui-evidence-recorder@show-it-works
+```
+
+It is a convenience, not a dependency. Show It Works stores and publishes whatever watchable MP4 or WebM it is given, however it was recorded.
 
 ## Install in Other Agents
 
