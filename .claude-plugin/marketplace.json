@@ -22,7 +22,7 @@
         "repo": "kirill-kolomin/ui-evidence-recorder"
       },
       "description": "Records the video the other plugin publishes: a Playwright studio page that never navigates, a title card over the app's boot, a drawn cursor, a highlight ring before every click, a narration bar and severity-coloured notes. Optional — Show It Works accepts any watchable MP4 or WebM.",
-      "version": "1.1.0",
+      "version": "1.2.0",
       "license": "MIT",
       "homepage": "https://github.com/kirill-kolomin/ui-evidence-recorder",
       "keywords": ["playwright", "recording", "evidence", "screencast", "qa", "demo", "agent-skill"]
