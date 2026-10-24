@@ -85,8 +85,13 @@ flow, `list_runs` with it to walk back to the last run that still passed, then
 `get_run_events` (a window in seconds of video time) and `get_run` (commit,
 video link) on the runs either side of the change. Uploading runs is
 `create_run_upload` → PUT → `complete_run_upload`, or `@showitworks/reporter`
-and `@showitworks/core` do it for you. The rules for each tool are in its own
-description — read those, not a copy here.
+and `@showitworks/core` do it for you. When a checkpoint drifts from its
+baseline the service opens an alert: `list_alerts` names the flow, the
+checkpoint, the suspect commit and the last good one, and `get_checkpoint_diff`
+shows what changed. `accept_baseline` makes a checkpoint the new baseline —
+use it only after the person you work with has confirmed the UI change is
+intended, never to silence an alert you cannot explain. The rules for each tool
+are in its own description — read those, not a copy here.
 
 ## Name The Worktree Consistently
 
