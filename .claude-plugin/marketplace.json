@@ -10,7 +10,7 @@
       "name": "show-it-works-ui",
       "source": "./",
       "description": "Every finished coding task ends with a screen recording of the real run and a share link. AI agents publish proof-of-work videos over MCP; you verify results at your own pace — later, from your phone, anywhere — while your other agent sessions keep moving.",
-      "version": "0.0.2",
+      "version": "0.0.3",
       "license": "MIT",
       "homepage": "https://showitworks.app",
       "keywords": ["mcp", "ai-agent", "claude-code", "video", "screen-recording", "verification", "testing", "e2e", "playwright", "qa", "proof-of-work", "demo", "evidence", "agent-skill"]
@@ -22,7 +22,7 @@
         "repo": "kirill-kolomin/ui-evidence-recorder"
       },
       "description": "Records the video the other plugin publishes: a Playwright studio page that never navigates, a title card over the app's boot, a drawn cursor, a highlight ring before every click, a narration bar and severity-coloured notes. Optional — Show It Works accepts any watchable MP4 or WebM.",
-      "version": "1.1.0",
+      "version": "1.2.0",
       "license": "MIT",
       "homepage": "https://github.com/kirill-kolomin/ui-evidence-recorder",
       "keywords": ["playwright", "recording", "evidence", "screencast", "qa", "demo", "agent-skill"]
